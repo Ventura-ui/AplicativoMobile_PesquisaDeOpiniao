@@ -5,7 +5,7 @@ import br.edu.ifsp.dmo.pesquisadeopiniao.data.model.Voto
 
 class VotoDao(private val dbHelper: DatabaseHelper) {
 
-    fun inserirVoto(voto: Voto){
+    fun inserirVoto(voto: Voto) : Long{
         val db = dbHelper.writableDatabase
         val values = ContentValues().apply {
             put(DatabaseHelper.DATABASE_KEYS.COLUMN_VOTO_CODIGO, voto.codigo)
@@ -13,7 +13,7 @@ class VotoDao(private val dbHelper: DatabaseHelper) {
             put(DatabaseHelper.DATABASE_KEYS.COLUMN_VOTO_CODIGO_ESTUDANTE, voto.codigo_estudante)
         }
 
-        db.insert(DatabaseHelper.DATABASE_KEYS.TABLE_VOTO_NAME, null, values)
+        return db.insert(DatabaseHelper.DATABASE_KEYS.TABLE_VOTO_NAME, null, values)
     }
 
     fun getAllVotos() : List<Voto>{

@@ -10,7 +10,7 @@ class VotoRepository(context: Context) {
     private val dbHelper = DatabaseHelper(context)
     private val dao = VotoDao(dbHelper)
 
-    fun addVoto(voto: Voto) = dao.inserirVoto(voto)
+    fun addVoto(voto: Voto) : Long = dao.inserirVoto(voto)
 
     fun getAllVotos(): List<Voto> = dao.getAllVotos()
 
