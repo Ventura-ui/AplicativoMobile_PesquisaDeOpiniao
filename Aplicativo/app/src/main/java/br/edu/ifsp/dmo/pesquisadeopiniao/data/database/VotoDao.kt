@@ -91,7 +91,7 @@ class VotoDao(private val dbHelper: DatabaseHelper) {
             DatabaseHelper.DATABASE_KEYS.COLUMN_VOTO_CODIGO_ESTUDANTE
         )
 
-        val where = "${DatabaseHelper.DATABASE_KEYS.COLUMN_VOTO_CODIGO} = ?"
+        val where = "${DatabaseHelper.DATABASE_KEYS.COLUMN_VOTO_CODIGO_ESTUDANTE} = ?"
         val whereArgs = arrayOf(prontuario)
 
         var cursor = db.query(
