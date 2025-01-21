@@ -60,7 +60,7 @@ class MyVoteActivity : AppCompatActivity() {
                 var voto = viewModel.getByCodigo(codigoText)!!
                 var estudante = viewModel.getByProntuario(voto.codigo_estudante)
                 if(estudante != null){
-                    var textVoto: String = "${estudante.nome} - (${estudante.prontuario})\n" + "Voto: ${getOpcaoVoto(voto.valor)}"
+                    var textVoto: String = "${estudante.nome} - (${estudante.prontuario})\n\n" + "Voto: ${getOpcaoVoto(voto.valor)}"
                     binding.votoUsuario.visibility = View.VISIBLE
                     binding.votoUsuario.setText(textVoto)
                     binding.textCodigo.setText("")

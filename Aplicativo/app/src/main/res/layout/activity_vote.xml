@@ -25,13 +25,13 @@
         android:id="@+id/question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Vote para qual time você torce?:"
+        android:text="Para qual time você torce?:"
         android:layout_marginTop="90dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_title"
-        android:textSize="25sp"
-        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:textColor="@color/purple"
         android:visibility="visible"
         android:textStyle="bold"/>
 
@@ -84,8 +84,8 @@
         android:layout_marginBottom="90dp"
         android:visibility="visible"
         android:text="Votar"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@id/button_voltar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -95,25 +95,11 @@
         android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="20dp"
         android:text="Voltar"
-        app:layout_constraintTop_toTopOf="@id/main_title"
-        app:layout_constraintEnd_toStartOf="@id/main_title"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/title_voted"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="32sp"
-        android:textColor="@color/red"
-        android:visibility="gone"
-        android:textStyle="bold"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/aviso"
@@ -123,9 +109,9 @@
         android:layout_marginTop="90dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_voted"
-        android:textSize="25sp"
-        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="22sp"
+        android:textColor="@color/red"
         android:visibility="gone"
         android:textStyle="bold"/>
 
@@ -134,12 +120,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:layout_marginTop="90dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button_copiar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/aviso"
+        app:layout_constraintBottom_toTopOf="@id/button_voltar_menu"
         android:textSize="25sp"
-        android:textColor="@color/black"
+        android:textColor="@color/purple"
         android:visibility="gone"
         android:textStyle="bold"/>
 

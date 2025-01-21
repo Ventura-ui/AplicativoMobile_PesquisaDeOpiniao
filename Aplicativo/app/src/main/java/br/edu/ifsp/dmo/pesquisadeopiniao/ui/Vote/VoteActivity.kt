@@ -79,8 +79,6 @@ class VoteActivity : AppCompatActivity() {
             var valor: Int = getTimeSelecionado()
             val voto = Voto(codigo, valor, prontuario!!)
 
-            binding.titleVoted.setText(prontuario)
-
             if(viewModel.getByProntuario(prontuario!!) == null){
                 val result = viewModel.addVoto(voto.codigo, voto.valor, voto.codigo_estudante)
                 if(result != -1L){
@@ -127,7 +125,6 @@ class VoteActivity : AppCompatActivity() {
         binding.buttonVotar.visibility = View.GONE
         binding.buttonVoltar.visibility = View.GONE
 
-        binding.titleVoted.visibility = View.VISIBLE
         binding.aviso.visibility = View.VISIBLE
         binding.codigoVoto.visibility = View.VISIBLE
         binding.buttonCopiar.visibility = View.VISIBLE
