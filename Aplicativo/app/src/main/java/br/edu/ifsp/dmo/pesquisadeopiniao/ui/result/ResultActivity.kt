@@ -39,6 +39,7 @@ class ResultActivity : AppCompatActivity() {
 
     private fun setupResultados(){
         val listaDeVotos: List<Voto> = viewModel.getAllVotos()
+        var totalVotos: Int = 0
 
         val contagemVotos = mutableMapOf(
             1 to 0,
@@ -50,6 +51,7 @@ class ResultActivity : AppCompatActivity() {
         listaDeVotos.forEach { voto ->
             if (voto.valor in contagemVotos.keys) {
                 contagemVotos[voto.valor] = contagemVotos[voto.valor]!! + 1
+                totalVotos++
             }
         }
 
@@ -66,6 +68,7 @@ class ResultActivity : AppCompatActivity() {
             "$opcao - $nome: $quantidade votos"
         }
 
+        binding.votosTotal.setText("Total de votos: $totalVotos")
         binding.votosUsuarios.setText(resultadoTexto)
     }
 }

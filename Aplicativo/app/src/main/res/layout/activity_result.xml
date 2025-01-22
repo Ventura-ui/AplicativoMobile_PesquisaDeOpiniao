@@ -34,6 +34,19 @@
         android:textColor="@color/yellow"
         android:textStyle="bold"/>
 
+    <TextView
+        android:id="@+id/votos_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/votos_usuarios"
+        app:layout_constraintBottom_toTopOf="@id/button_voltar"
+        android:textSize="24sp"
+        android:textColor="@color/yellow"
+        android:textStyle="bold"/>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_voltar"
         style="@style/Widget.MaterialComponents.Button"
