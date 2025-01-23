@@ -13,7 +13,6 @@ import br.edu.ifsp.dmo.pesquisadeopiniao.R
 import br.edu.ifsp.dmo.pesquisadeopiniao.data.model.Voto
 import br.edu.ifsp.dmo.pesquisadeopiniao.databinding.ActivityMyVoteBinding
 import br.edu.ifsp.dmo.pesquisadeopiniao.databinding.ActivityVoteBinding
-import br.edu.ifsp.dmo.pesquisadeopiniao.ui.Vote.MenuActivity
 import br.edu.ifsp.dmo.pesquisadeopiniao.ui.Vote.VoteViewModel
 import br.edu.ifsp.dmo.pesquisadeopiniao.ui.main.MainActivity
 
@@ -36,6 +35,7 @@ class MyVoteActivity : AppCompatActivity() {
         binding.buttonVoltar.setOnClickListener{
             val mIntent = Intent(this, MainActivity::class.java)
             startActivity(mIntent)
+            finish()
         }
 
         binding.buttonSearch.setOnClickListener{
@@ -45,10 +45,10 @@ class MyVoteActivity : AppCompatActivity() {
 
     private fun getOpcaoVoto(opcao: Int) : String{
         return when (opcao) {
-            1 -> "Corinthians"
-            2 -> "São Paulo"
-            3 -> "Palmeiras"
-            else -> "Outro"
+            1 -> "Ótimo"
+            2 -> "Bom"
+            3 -> "Regular"
+            else -> "Ruim"
         }
     }
 
@@ -58,13 +58,10 @@ class MyVoteActivity : AppCompatActivity() {
         if(codigoText.isNotEmpty()){
             if(viewModel.getByCodigo(codigoText) != null){
                 var voto = viewModel.getByCodigo(codigoText)!!
-                var estudante = viewModel.getByProntuario(voto.codigo_estudante)
-                if(estudante != null){
-                    var textVoto: String = "${estudante.nome} - (${estudante.prontuario})\n\n" + "Voto: ${getOpcaoVoto(voto.valor)}"
-                    binding.votoUsuario.visibility = View.VISIBLE
-                    binding.votoUsuario.setText(textVoto)
-                    binding.textCodigo.setText("")
-                }
+                var textVoto: String = "Voto: ${getOpcaoVoto(voto.valor)}"
+                binding.votoUsuario.visibility = View.VISIBLE
+                binding.votoUsuario.setText(textVoto)
+                binding.textCodigo.setText("")
             }else{
                 Toast.makeText(this, "Código não encontrado!", Toast.LENGTH_SHORT).show()
             }

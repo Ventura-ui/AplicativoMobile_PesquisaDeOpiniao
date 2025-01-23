@@ -34,6 +34,7 @@ class ResultActivity : AppCompatActivity() {
         binding.buttonVoltar.setOnClickListener{
             val mIntent = Intent(this, MainActivity::class.java)
             startActivity(mIntent)
+            finish()
         }
     }
 
@@ -59,10 +60,10 @@ class ResultActivity : AppCompatActivity() {
 
         val resultadoTexto = resultadosOrdenados.joinToString("\n\n") { (opcao, quantidade) ->
             val nome = when (opcao) {
-                1 -> "Corinthians"
-                2 -> "São Paulo"
-                3 -> "Palmeiras"
-                4 -> "Outro"
+                1 -> "Ótimo"
+                2 -> "Bom"
+                3 -> "Regular"
+                4 -> "Ruim"
                 else -> "Desconhecido"
             }
             "$opcao - $nome: $quantidade votos"

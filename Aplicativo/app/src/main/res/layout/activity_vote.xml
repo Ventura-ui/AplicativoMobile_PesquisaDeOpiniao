@@ -25,7 +25,7 @@
         android:id="@+id/question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Para qual time você torce?:"
+        android:text="Avalie o curso de ADS:"
         android:layout_marginTop="90dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +50,7 @@
             android:textSize="25sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Corinthians"
+            android:text="Ótimo"
             android:checked="true"/>
 
         <RadioButton
@@ -58,21 +58,21 @@
             android:textSize="25sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="São Paulo" />
+            android:text="Bom" />
 
         <RadioButton
             android:id="@+id/radioOption3"
             android:textSize="25sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Palmeiras" />
+            android:text="Regular" />
 
         <RadioButton
             android:id="@+id/radioOption4"
             android:textSize="25sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Outro" />
+            android:text="Ruim" />
 
     </RadioGroup>
 

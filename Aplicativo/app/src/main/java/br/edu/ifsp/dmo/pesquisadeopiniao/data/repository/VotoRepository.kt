@@ -16,6 +16,4 @@ class VotoRepository(context: Context) {
 
     fun getVotoByCodigo(codigo: String): Voto? = dao.getVotoByCodigo(codigo)
 
-    fun getVotoByProntuario(prontuario: String): Voto? = dao.getVotoByProntuario(prontuario)
-
 }

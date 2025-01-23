@@ -28,4 +28,8 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         load()
         return result
     }
+
+    fun getByProntuario(prontuario: String) : Estudante?{
+        return repository.getByProntuario(prontuario)
+    }
 }

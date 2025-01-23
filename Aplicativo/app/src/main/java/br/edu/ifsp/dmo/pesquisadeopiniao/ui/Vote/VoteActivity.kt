@@ -27,6 +27,7 @@ class VoteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityVoteBinding
     private lateinit var viewModel: VoteViewModel
     private var prontuario: String? = null
+    private var nome: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +42,9 @@ class VoteActivity : AppCompatActivity() {
 
     private fun setupListeners(){
         binding.buttonVoltar.setOnClickListener{
-            val mIntent = Intent(this, MenuActivity::class.java)
+            val mIntent = Intent(this, MainActivity::class.java)
             startActivity(mIntent)
+            finish()
         }
 
         binding.buttonVotar.setOnClickListener{
@@ -52,6 +54,7 @@ class VoteActivity : AppCompatActivity() {
         binding.buttonVoltarMenu.setOnClickListener{
             val mIntent = Intent(this, MainActivity::class.java)
             startActivity(mIntent)
+            finish()
         }
 
         binding.buttonCopiar.setOnClickListener{
@@ -67,41 +70,49 @@ class VoteActivity : AppCompatActivity() {
 
     private fun verifyExtras(){
         prontuario = intent.getStringExtra("prontuario")
+        nome = intent.getStringExtra("nome")
     }
 
     private fun gerarCodigoDeVoto(): String {
-        return UUID.randomUUID().toString().replace("-", "").take(13)
+        return UUID.randomUUID().toString().replace("-", "").take(10)
     }
 
     private fun registrarVoto(){
         if(prontuario != null){
             var codigo: String = gerarCodigoDeVoto()
-            var valor: Int = getTimeSelecionado()
-            val voto = Voto(codigo, valor, prontuario!!)
+            var valor: Int = getEscolhaSelecionado()
+            val voto = Voto(codigo, valor)
 
             if(viewModel.getByProntuario(prontuario!!) == null){
-                val result = viewModel.addVoto(voto.codigo, voto.valor, voto.codigo_estudante)
+                val result = viewModel.addVoto(voto.codigo, voto.valor)
                 if(result != -1L){
                     Toast.makeText(this, "Voto feito com sucesso!", Toast.LENGTH_SHORT).show()
+
+                    val result = viewModel.addEstudante(prontuario!!, nome!!)
+                    if(result != -1L){
+                        Toast.makeText(this, "Usuário cadastrado com sucesso!", Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(this, "Não foi possível cadastrar o usuário!", Toast.LENGTH_SHORT).show()
+                    }
                     modificarTela(codigo)
                 }else{
                     Toast.makeText(this, "Não foi possível realizar o voto!", Toast.LENGTH_SHORT).show()
-                    val mIntent = Intent(this, MenuActivity::class.java)
+                    val mIntent = Intent(this, MainActivity::class.java)
                     startActivity(mIntent)
                 }
             }else{
-                Toast.makeText(this, "O usuário $prontuario já votou!", Toast.LENGTH_SHORT).show()
-                val mIntent = Intent(this, MenuActivity::class.java)
+                Toast.makeText(this, "O usuário $nome já votou!", Toast.LENGTH_SHORT).show()
+                val mIntent = Intent(this, MainActivity::class.java)
                 startActivity(mIntent)
             }
         }else{
             Toast.makeText(this, "Prontuário nulo!", Toast.LENGTH_SHORT).show()
-            val mIntent = Intent(this, MenuActivity::class.java)
+            val mIntent = Intent(this, MainActivity::class.java)
             startActivity(mIntent)
         }
     }
 
-    private fun getTimeSelecionado() : Int{
+    private fun getEscolhaSelecionado() : Int{
         val opcaoSelecionada = binding.radioGroup.checkedRadioButtonId
         var timeSelecionado: String? = null
 
@@ -111,9 +122,9 @@ class VoteActivity : AppCompatActivity() {
         }
 
         return when (timeSelecionado) {
-            "Corinthians" -> 1
-            "São Paulo" -> 2
-            "Palmeiras" -> 3
+            "Ótimo" -> 1
+            "Bom" -> 2
+            "Regular" -> 3
             else -> 4
         }
     }
