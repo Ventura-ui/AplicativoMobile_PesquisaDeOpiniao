@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.dmo.pesquisadeopiniao.databinding.ActivityMainBinding
-import br.edu.ifsp.dmo.pesquisadeopiniao.ui.Vote.Register.RegisterActivity
+import br.edu.ifsp.dmo.pesquisadeopiniao.ui.register.RegisterActivity
 import br.edu.ifsp.dmo.pesquisadeopiniao.ui.myVote.MyVoteActivity
 import br.edu.ifsp.dmo.pesquisadeopiniao.ui.result.ResultActivity
 

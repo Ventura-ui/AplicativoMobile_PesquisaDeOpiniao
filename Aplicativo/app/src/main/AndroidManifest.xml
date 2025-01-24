@@ -19,7 +19,7 @@
             android:name=".ui.Vote.Login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.Vote.Register.RegisterActivity"
+            android:name=".ui.register.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".ui.myVote.MyVoteActivity"

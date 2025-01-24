@@ -1,17 +1,12 @@
-package br.edu.ifsp.dmo.pesquisadeopiniao.ui.Vote.Register
+package br.edu.ifsp.dmo.pesquisadeopiniao.ui.register
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
-import br.edu.ifsp.dmo.pesquisadeopiniao.R
 import br.edu.ifsp.dmo.pesquisadeopiniao.data.model.Estudante
-import br.edu.ifsp.dmo.pesquisadeopiniao.databinding.ActivityMainBinding
 import br.edu.ifsp.dmo.pesquisadeopiniao.databinding.ActivityRegisterBinding
 import br.edu.ifsp.dmo.pesquisadeopiniao.ui.Vote.VoteActivity
 import br.edu.ifsp.dmo.pesquisadeopiniao.ui.main.MainActivity
@@ -20,8 +15,6 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var viewModel: RegisterViewModel
-    private lateinit var voteResultLauncher: ActivityResultLauncher<Intent>
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,12 +23,7 @@ class RegisterActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
 
-        setupLauncher()
         setupListeners()
-    }
-
-    private fun setupLauncher(){
-
     }
 
     private fun setupListeners(){

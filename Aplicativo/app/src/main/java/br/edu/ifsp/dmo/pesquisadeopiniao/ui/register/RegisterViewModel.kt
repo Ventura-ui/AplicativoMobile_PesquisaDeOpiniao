@@ -1,4 +1,4 @@
-package br.edu.ifsp.dmo.pesquisadeopiniao.ui.Vote.Register
+package br.edu.ifsp.dmo.pesquisadeopiniao.ui.register
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -17,16 +17,6 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
 
     init {
         repository = EstudanteRepository(application)
-    }
-
-    fun load(){
-        _estudantes.value = repository.getAllEstudantes()
-    }
-
-    fun addEstudante(prontuario: String, nome: String) : Long{
-        var result = repository.addEstudante(Estudante(prontuario, nome))
-        load()
-        return result
     }
 
     fun getByProntuario(prontuario: String) : Estudante?{

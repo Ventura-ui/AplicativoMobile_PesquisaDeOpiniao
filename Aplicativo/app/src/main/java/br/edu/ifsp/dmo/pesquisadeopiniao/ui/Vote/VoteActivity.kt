@@ -8,18 +8,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
-import br.edu.ifsp.dmo.pesquisadeopiniao.R
 import br.edu.ifsp.dmo.pesquisadeopiniao.data.model.Voto
-import br.edu.ifsp.dmo.pesquisadeopiniao.databinding.ActivityRegisterBinding
 import br.edu.ifsp.dmo.pesquisadeopiniao.databinding.ActivityVoteBinding
-import br.edu.ifsp.dmo.pesquisadeopiniao.ui.Vote.Register.RegisterViewModel
 import br.edu.ifsp.dmo.pesquisadeopiniao.ui.main.MainActivity
-import java.security.MessageDigest
 import java.util.UUID
 
 class VoteActivity : AppCompatActivity() {
@@ -73,13 +66,9 @@ class VoteActivity : AppCompatActivity() {
         nome = intent.getStringExtra("nome")
     }
 
-    private fun gerarCodigoDeVoto(): String {
-        return UUID.randomUUID().toString().replace("-", "").take(10)
-    }
-
     private fun registrarVoto(){
         if(prontuario != null){
-            var codigo: String = gerarCodigoDeVoto()
+            var codigo: String = Voto.gerarCodigoDeVoto()
             var valor: Int = getEscolhaSelecionado()
             val voto = Voto(codigo, valor)
 
