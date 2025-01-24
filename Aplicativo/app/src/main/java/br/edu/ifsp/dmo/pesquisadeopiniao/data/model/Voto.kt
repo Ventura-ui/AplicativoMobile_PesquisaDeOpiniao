@@ -8,6 +8,15 @@ class Voto(val codigo: String, val valor: Int) {
         fun gerarCodigoDeVoto(): String {
             return UUID.randomUUID().toString().replace("-", "").take(10)
         }
+
+        fun getOpcaoVoto(opcao: Int) : String{
+            return when (opcao) {
+                1 -> "Ótimo"
+                2 -> "Bom"
+                3 -> "Regular"
+                else -> "Ruim"
+            }
+        }
     }
 
 }

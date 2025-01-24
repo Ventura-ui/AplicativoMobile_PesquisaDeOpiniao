@@ -43,14 +43,6 @@ class MyVoteActivity : AppCompatActivity() {
         }
     }
 
-    private fun getOpcaoVoto(opcao: Int) : String{
-        return when (opcao) {
-            1 -> "Ótimo"
-            2 -> "Bom"
-            3 -> "Regular"
-            else -> "Ruim"
-        }
-    }
 
     private fun fazerPesquisa(){
         var codigoText: String = binding.textCodigo.text.toString()
@@ -58,7 +50,7 @@ class MyVoteActivity : AppCompatActivity() {
         if(codigoText.isNotEmpty()){
             if(viewModel.getByCodigo(codigoText) != null){
                 var voto = viewModel.getByCodigo(codigoText)!!
-                var textVoto: String = "Voto: ${getOpcaoVoto(voto.valor)}"
+                var textVoto: String = "Voto: ${Voto.getOpcaoVoto(voto.valor)}"
                 binding.votoUsuario.visibility = View.VISIBLE
                 binding.votoUsuario.setText(textVoto)
                 binding.textCodigo.setText("")

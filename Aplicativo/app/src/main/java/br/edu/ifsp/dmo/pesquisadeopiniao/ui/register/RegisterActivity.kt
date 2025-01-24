@@ -52,7 +52,7 @@ class RegisterActivity : AppCompatActivity() {
                 startActivity(mIntent)
                 finish()
             }else{
-                Toast.makeText(this, "O Usuário $nome já esta registrado!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "O Usuário $prontuario já esta registrado!", Toast.LENGTH_SHORT).show()
                 val mIntent = Intent(this, MainActivity::class.java)
                 startActivity(mIntent)
                 finish()
