@@ -33,24 +33,24 @@ class VoteActivity : AppCompatActivity() {
         setupListeners()
     }
 
-    private fun setupListeners(){
-        binding.buttonVoltar.setOnClickListener{
+    private fun setupListeners() {
+        binding.buttonVoltar.setOnClickListener {
             val mIntent = Intent(this, MainActivity::class.java)
             startActivity(mIntent)
             finish()
         }
 
-        binding.buttonVotar.setOnClickListener{
+        binding.buttonVotar.setOnClickListener {
             registrarVoto()
         }
 
-        binding.buttonVoltarMenu.setOnClickListener{
-            val mIntent = Intent(this, MainActivity::class.java)
-            startActivity(mIntent)
+        binding.buttonVoltarMenu.setOnClickListener {
+            val intent = Intent()
+            setResult(RESULT_OK, intent)
             finish()
         }
 
-        binding.buttonCopiar.setOnClickListener{
+        binding.buttonCopiar.setOnClickListener {
             val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
 
             val clip = ClipData.newPlainText("Código Copiado", binding.codigoVoto.text.toString())
@@ -61,51 +61,49 @@ class VoteActivity : AppCompatActivity() {
         }
     }
 
-    private fun verifyExtras(){
+    private fun verifyExtras() {
         prontuario = intent.getStringExtra("prontuario")
         nome = intent.getStringExtra("nome")
     }
 
-    private fun registrarVoto(){
-        if(prontuario != null){
-            var codigo: String = Voto.gerarCodigoDeVoto()
-            var valor: Int = getEscolhaSelecionado()
+    private fun registrarVoto() {
+        if (prontuario != null) {
+            val codigo: String = Voto.gerarCodigoDeVoto()
+            val valor: Int = getEscolhaSelecionado()
             val voto = Voto(codigo, valor)
 
-            if(viewModel.getByProntuario(prontuario!!) == null){
+            if (viewModel.getByProntuario(prontuario!!) == null) {
                 val result = viewModel.addVoto(voto.codigo, voto.valor)
-                if(result != -1L){
+                if (result != -1L) {
                     Toast.makeText(this, "Voto feito com sucesso!", Toast.LENGTH_SHORT).show()
 
-                    val result = viewModel.addEstudante(prontuario!!, nome!!)
-                    if(result != -1L){
+                    val resultEstudante = viewModel.addEstudante(prontuario!!, nome!!)
+                    if (resultEstudante != -1L) {
                         Toast.makeText(this, "Usuário cadastrado com sucesso!", Toast.LENGTH_SHORT).show()
-                    }else{
-                        Toast.makeText(this, "Não foi possível cadastrar o usuário!", Toast.LENGTH_SHORT).show()
                     }
                     modificarTela(codigo)
-                }else{
+                } else {
                     Toast.makeText(this, "Não foi possível realizar o voto!", Toast.LENGTH_SHORT).show()
-                    val mIntent = Intent(this, MainActivity::class.java)
-                    startActivity(mIntent)
+                    setResult(RESULT_CANCELED)
+                    finish()
                 }
-            }else{
+            } else {
                 Toast.makeText(this, "O usuário $nome já votou!", Toast.LENGTH_SHORT).show()
-                val mIntent = Intent(this, MainActivity::class.java)
-                startActivity(mIntent)
+                setResult(RESULT_CANCELED)
+                finish()
             }
-        }else{
+        } else {
             Toast.makeText(this, "Prontuário nulo!", Toast.LENGTH_SHORT).show()
-            val mIntent = Intent(this, MainActivity::class.java)
-            startActivity(mIntent)
+            setResult(RESULT_CANCELED)
+            finish()
         }
     }
 
-    private fun getEscolhaSelecionado() : Int{
+    private fun getEscolhaSelecionado(): Int {
         val opcaoSelecionada = binding.radioGroup.checkedRadioButtonId
         var timeSelecionado: String? = null
 
-        if(opcaoSelecionada != -1){
+        if (opcaoSelecionada != -1) {
             val radioButtonSelecionado = findViewById<RadioButton>(opcaoSelecionada)
             timeSelecionado = radioButtonSelecionado.text.toString()
         }
@@ -118,7 +116,7 @@ class VoteActivity : AppCompatActivity() {
         }
     }
 
-    private fun modificarTela(codigo: String){
+    private fun modificarTela(codigo: String) {
         binding.mainTitle.visibility = View.GONE
         binding.question.visibility = View.GONE
         binding.radioGroup.visibility = View.GONE
